@@ -1,6 +1,6 @@
 # Taskwarrior reminder script
 
-A simple script to popup notifications (via `notify-send` command or another specified on configs).
+A simple script to popup notifications (via `notify-send` command or another specified on configs) for taskwarrior tasks with **reminder** UDA attribute set.
 
 `installer.sh` script will create service and link it with the timer on right folder.
 
