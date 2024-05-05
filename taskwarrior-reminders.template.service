@@ -1,0 +1,12 @@
+# vim: filetype=systemd
+
+[Unit]
+Description=Taskwarrior reminder service
+Wants=taskwarrior-reminders.timer
+
+[Service]
+# TODO Colocar isso em um lugar melhor....
+ExecStart=__repository_folder__/reminders check
+
+[Install]
+WantedBy=multi-user.target

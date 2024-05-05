@@ -1,0 +1,14 @@
+# vim: filetype=systemd
+
+[Unit]
+Description=Check taskwarrior reminders every minute
+Requires=taskwarrior-reminders.service
+
+[Timer]
+Unit=taskwarrior-reminders.service
+OnUnitInactiveSec=1m
+AccuracySec=10s
+
+[Install]
+WantedBy=timers.target
+
