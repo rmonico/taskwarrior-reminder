@@ -29,6 +29,9 @@ def _get_configs():
     import os
 
     config_file_name = _get_config_file()
+
+    logger.debug(f'Using config file: {config_file_name}')
+
     if not os.path.exists(config_file_name):
         os.makedirs(os.path.dirname(config_file_name), exist_ok=True)
         with open(config_file_name, 'w') as f:
@@ -51,6 +54,7 @@ utc_offset: -3''')
 
 @Command('check', help='Check if there are reminders pending to show')
 def do_check():
+    global logger
     logger = logging.getLogger(__name__)
     from subprocess import PIPE, run
 
