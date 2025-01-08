@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+
+import dbus
+import names
+
+
+bus = dbus.SessionBus()
+helloservice = bus.get_object(bus_name=names.bus_name, object_path=names.object_path)
+print(helloservice.hello('Something', 'Something else'))
+
+# Can be made like this:
+# 
+# hello = helloservice.get_dbus_method('hello', 'org.frankhale.helloservice')
+# print(hello('Something', 'Something else'))

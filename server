@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+# https://dbus.freedesktop.org/doc/dbus-python/dbus.html
+# https://excid3.com/blog/an-actually-decent-python-dbus-tutorial (with some modifications)
+
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
+import dbus
+import dbus.service
+from dbus.mainloop.glib import DBusGMainLoop
+import names
+
+class MyDBUSService(dbus.service.Object):
+
+    def __init__(self):
+        bus_name = dbus.service.BusName(names.bus_name, bus=dbus.SessionBus())
+        dbus.service.Object.__init__(self, bus_name, names.object_path)
+
+    @dbus.service.method(dbus_interface=names.bus_name)
+    # **kwargs aparently is not supported, it always get an empty dict
+    def hello(self, *args):
+        return f'Hello world! Called with args={args}.'
+
+DBusGMainLoop(set_as_default=True)
+myservice = MyDBUSService()
+Gtk.main()
